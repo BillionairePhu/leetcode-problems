@@ -1,8 +1,8 @@
-# 3439. Reschedule Meetings for Maximum Free Time I
+# 1900. The Earliest and Latest Rounds Where Players Compete
 
-Tag: `Greedy`, `Array`, `Sliding window`
+Tag: `Dynamic Programming`, `Memoization`
 
-Link: [Problem 3439](https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/description/?envType=daily-question&envId=2025-07-09)
+Link: [Problem 1900 - The Earliest and Latest Rounds Where Players Compete](https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/description/?envType=daily-question&envId=2025-07-12)
 
 ## Intuitive
 
