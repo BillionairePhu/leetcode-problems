@@ -4,7 +4,7 @@ Tag: `Array`, `Dynamic Programming`, `Heap`
 
 Link: [Problem 2163. Minimum Difference in Sums After Removal of Elements](https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/description/?envType=daily-question&envId=2025-07-18)
 
-*I need to peak the Editorial to get some ideas :D turn out not hat hard*
+*I need to peak the Editorial to get some ideas :D turn out not that hard*
 
 ## Intuitive
 
