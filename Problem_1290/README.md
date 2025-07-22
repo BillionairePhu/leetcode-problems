@@ -4,7 +4,7 @@ Tag: `Linked List`, `Math`
 
 Link: [Problem 1290. Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/description/?envType=daily-question&envId=2025-07-14)
 
-## Intuitive
+## Intuition
 
 Very simple problem, just go through the nodes in the linked list.
 
