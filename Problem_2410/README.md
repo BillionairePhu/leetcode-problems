@@ -4,7 +4,7 @@ Tag: `Sorting`, `Greedy algorithm`
 
 Link: [Problem 2410 - Maximum Matching of Players With Trainers](https://leetcode.com/problems/maximum-matching-of-players-with-trainers/description/?envType=daily-question&envId=2025-07-13)
 
-## Intuitive
+## Intuition
 
 First, sort the arrays of players and trainers.
 
