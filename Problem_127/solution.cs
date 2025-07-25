@@ -1,4 +1,8 @@
-public partial class Solution {
+namespace LeetCode;
+
+[TestClass]
+public class Solution127
+{
     [TestMethod]
     public void LadderLengthTest()
     {
