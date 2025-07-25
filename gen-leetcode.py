@@ -2,6 +2,8 @@ import os
 import sys
 import shutil
 
+md_path = "template.md"
+
 def main():
     if len(sys.argv) != 2:
         print("Usage: python gen-leetcode.py <problem_number>")
@@ -25,12 +27,12 @@ def main():
 
     # Copy sample.md to README.md
     readme_path = os.path.join(folder_name, "README.md")
-    if not os.path.exists("sample.md"):
+    if not os.path.exists(md_path):
         print("Error: sample.md not found in the current directory.")
         return
 
     if not os.path.exists(readme_path):
-        shutil.copy("sample.md", readme_path)
+        shutil.copy(md_path, readme_path)
         print(f"Copied sample.md → {readme_path}")
 
     print(f"\n📁 {folder_name} is ready!")

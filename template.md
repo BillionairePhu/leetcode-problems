@@ -1,26 +1,24 @@
-# {{ title }} ({{ frontendQuestionId }})
+# 🔥 Leetcode Problem ({{ frontendQuestionId }})
 
-**Difficulty:** {{ difficulty }}  
-**Acceptance Rate:** {{ acRate }}%  
-**Link:** [Go to Problem](https://leetcode.com{{ link }})
-
----
-
-## Tags
-{% for tag in topicTags %}
-- {{ tag.name }}
-{% endfor %}
+> **Problem:** [{{ title }}](https://leetcode.com{{ link }})<br />
+> **Difficulty:** {{ difficulty }}<br/>
+> **Tags:** {% for tag in topicTags %}`{{ tag.name }}`{% if not loop.last %}, {% endif %}{% endfor %}
 
 ---
 
-## Description
+### ✅ Intuition
 
 *Add your notes or explanation here.*
 
 ---
 
-## Solution
+### 💡Implementation
 
-```python
-# Write your solution here
-```
+*Add your notes or explanation here.*
+
+---
+
+### 🧪 Complexity
+
+- **Time:** O(?)
+- **Space:** O(?)

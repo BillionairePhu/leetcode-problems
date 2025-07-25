@@ -13,6 +13,18 @@
 
 ---
 
+## Repo features
+
+**Leetcode folder generation**:
+
+`python gen-daily-leetcode.py`: generate leetcode folder for today daily challenge
+
+`python gen-leetcode.py [CHALLENGE_NUMBER]`: generate leetcode folder for the input challenge number
+
+*In the future, these command might be fused into one*
+
+---
+
 ## 🎯 Goals
 
 📅 **Deadline:** `31/12/2025`
