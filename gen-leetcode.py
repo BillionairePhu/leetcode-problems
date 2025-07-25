@@ -17,7 +17,7 @@ def main():
     os.makedirs(folder_name, exist_ok=True)
 
     # Generate Python file
-    code_path = os.path.join(folder_name, f"{problem_number}.py")
+    code_path = os.path.join(folder_name, f"solution.py")
     if not os.path.exists(code_path):
         with open(code_path, 'w') as f:
             f.write("# Write your solution here\n")
