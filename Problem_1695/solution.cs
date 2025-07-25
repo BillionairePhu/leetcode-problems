@@ -1,11 +1,6 @@
-public partial class Solution
+namespace LeetCode;
+public class Solution1695
 {
-    [TestMethod]
-    public void MaximumUniqueSubarrayTest()
-    {
-        Assert.AreEqual(17, MaximumUniqueSubarray([4, 2, 4, 5, 6]));
-        Assert.AreEqual(8, MaximumUniqueSubarray([5, 2, 1, 2, 5, 2, 1, 2, 5]));
-    }
     public int MaximumUniqueSubarray(int[] nums)
     {
         HashSet<int> found = new();
