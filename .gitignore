@@ -1,2 +1,76 @@
-obj
-bin
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Dotnet tools
+*.dbmdl
+*.bak
+*.backup
+*.log
+*.ncb
+*.opendb
+*.mdf
+*.ldf
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+packages/
+!**/packages/build/
+!**/packages/repositories.config
+
+# Compiled binaries
+*.dll
+*.exe
+*.pdb
+*.cache
+*.diff
+*.orig
+*.rej
+
+# Other generated files
+*.tmp
+*.temp
+*.log
+*.vspscc
+*.vssscc
+*.builds
+*.pidb
+*.svclog
+*.scc
+
+# Coverage / Testing
+*.coverage
+*.coveragexml
+*.testsettings
+TestResult.xml
+TestResults/
+.vscode/
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Mac / Linux system files
+.DS_Store
+Thumbs.db
+
+# Dotnet CLI
+*.lock.json
