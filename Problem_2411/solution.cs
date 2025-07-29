@@ -1,14 +1,46 @@
+﻿using LeetCode.SolutionValidator;
 namespace LeetCode;
 
 [TestClass]
-public class Solution2441
+public class Solution_2411
 {
     [TestMethod]
-    public void SmallestSubarraysTest()
+    public void TestSolution()
     {
-        Console.WriteLine(string.Join(',', SmallestSubarrays([1, 0])));
+        int[] array = [1, 0, 2, 1, 3];
+        int[] result = SmallestSubarrays(array);
+        foreach (int num in result)
+        {
+            Console.WriteLine(num);
+        }
     }
     public int[] SmallestSubarrays(int[] nums)
+    {
+        int[] pos = Enumerable.Repeat(-1, 31).ToArray();
+        int[] result = new int[nums.Length];
+        for (int i = nums.Length - 1; i >= 0; i--)
+        {
+            for (int j = 0; j < pos.Length; j++)
+            {
+                if ((nums[i] & (1 << j)) != 0)
+                {
+                    pos[j] = i;
+                }
+            }
+            int maxPos = pos.Max();
+            if (maxPos > -1)
+            {
+                result[i] = maxPos - i + 1;
+            }
+            else
+            {
+                result[i] = 1;
+            }
+        }
+        return result;
+    }
+    [SolutionValidator]
+    public int[] SmallestSubarrays2nd(int[] nums)
     {
         int[] res = new int[nums.Length];
         int[] lastseenbit = new int[30];

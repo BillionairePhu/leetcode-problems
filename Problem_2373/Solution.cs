@@ -1,8 +1,8 @@
-﻿
+﻿namespace LeetCode;
+
 [TestClass]
-public class Solution
+public class Solution_2373
 {
-    public Solution() {}
 
     [TestMethod]
     public void SayHello()
