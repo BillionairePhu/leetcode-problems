@@ -1,5 +1,4 @@
-﻿using LeetCode.SolutionValidator;
-namespace LeetCode;
+﻿namespace LeetCode.ProblemSet_24;
 
 [TestClass]
 public class Solution_2411
@@ -39,7 +38,6 @@ public class Solution_2411
         }
         return result;
     }
-    [SolutionValidator]
     public int[] SmallestSubarrays2nd(int[] nums)
     {
         int[] res = new int[nums.Length];

@@ -1,4 +1,4 @@
-namespace LeetCode;
+namespace LeetCode.ProblemSet_34;
 
 public class Solution3487
 {

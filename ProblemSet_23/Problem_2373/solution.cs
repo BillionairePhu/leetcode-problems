@@ -1,4 +1,4 @@
-﻿namespace LeetCode;
+﻿namespace LeetCode.ProblemSet_23;
 
 [TestClass]
 public class Solution_2373
