@@ -119,19 +119,20 @@ def gen_classic(problem_number: int):
 
 md_path = "template.md"
 def main():
-    if len(sys.argv) == 1:
+    try:
+        match sys.argv[1]:
+            case "help":
+                print(help_message)
+            case "daily":
+                gen_daily()
+            case "classic":
+                problem_number = int(sys.argv[2])
+                gen_classic(problem_number)
+            case _:
+                raise Exception("Invalid command")
+    except Exception as e:
+        print(f"\033[31mAn error occurred: {e}\033[0m")
         print(help_message)
-    match sys.argv[1]:
-        case "help":
-            print(help_message)
-        case "daily":
-            gen_daily()
-        case "classic":
-            if not sys.argv[2].isdigit():
-                print("Error: Problem number must be a digit.")
-                return
-            problem_number = int(sys.argv[2])
-            gen_classic(problem_number)
 
 if __name__ == "__main__":
     main()
