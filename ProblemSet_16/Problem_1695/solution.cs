@@ -1,5 +1,5 @@
-namespace LeetCode;
-public class Solution1695
+namespace LeetCode.ProblemSet_16;
+public class Solution_1695
 {
     public int MaximumUniqueSubarray(int[] nums)
     {

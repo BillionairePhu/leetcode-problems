@@ -1,6 +1,6 @@
-namespace LeetCode;
+namespace LeetCode.ProblemSet_1;
 
-public class Solution149
+public class Solution_149
 {
     public int MaxPoints(int[][] points)
     {

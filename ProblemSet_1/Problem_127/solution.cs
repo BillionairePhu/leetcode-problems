@@ -1,7 +1,7 @@
-namespace LeetCode;
+namespace LeetCode.ProblemSet_1;
 
 [TestClass]
-public class Solution127
+public class Solution_127
 {
     [TestMethod]
     public void LadderLengthTest()
