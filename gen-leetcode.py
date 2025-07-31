@@ -4,24 +4,6 @@ import shutil
 import requests
 from jinja2 import Template
 
-md_path = "template.md"
-def main():
-    if len(sys.argv) == 1:
-        print(help_message)
-    match sys.argv[1]:
-        case "help":
-            print(help_message)
-        case "daily":
-            gen_daily()
-        case "classic":
-            if not sys.argv[2].isdigit():
-                print("Error: Problem number must be a digit.")
-                return
-            problem_number = int(sys.argv[2])
-            gen_classic(problem_number)
-
-if __name__ == "__main__":
-    main()
 
 help_message = """
 Usage:
@@ -36,6 +18,7 @@ Examples:
     python gen-leetcode.py daily
     python gen-leetcode.py classic 1234
 """
+
 def problem_path(problem_number : int):
     return f"ProblemSet_{problem_number%100}/Problem_{problem_number}"
 
@@ -133,3 +116,22 @@ def gen_classic(problem_number: int):
         print(f"Copied sample.md → {readme_path}")
 
     print(f"\n📁 {folder_name} is ready!")
+
+md_path = "template.md"
+def main():
+    if len(sys.argv) == 1:
+        print(help_message)
+    match sys.argv[1]:
+        case "help":
+            print(help_message)
+        case "daily":
+            gen_daily()
+        case "classic":
+            if not sys.argv[2].isdigit():
+                print("Error: Problem number must be a digit.")
+                return
+            problem_number = int(sys.argv[2])
+            gen_classic(problem_number)
+
+if __name__ == "__main__":
+    main()
