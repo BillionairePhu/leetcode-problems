@@ -20,7 +20,7 @@ Examples:
 """
 
 def problem_path(problem_number : int):
-    return f"ProblemSet_{problem_number//100}/Problem_{problem_number}"
+    return f"ProblemSet_{problem_number//100}xx/Problem_{problem_number}"
 
 def gen_daily():
     url = "https://leetcode.com/graphql/"
