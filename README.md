@@ -17,11 +17,23 @@
 
 **Leetcode folder generation**:
 
-`python gen-daily-leetcode.py`: generate leetcode folder for today daily challenge
+There is a python file `gen-leetcode.py` to automate the task of creating Leetcode folder along with default files.
 
-`python gen-leetcode.py [CHALLENGE_NUMBER]`: generate leetcode folder for the input challenge number
+```shell
+Usage:
+    python gen-leetcode.py [command] [arguments]
 
-*In the future, these command might be fused into one*
+Commands:
+    help                Show this help message.
+    daily               Generate today's LeetCode daily challenge folder.
+    classic <number>    Generate folder for a classic LeetCode problem by number.
+
+Examples:
+    python gen-leetcode.py daily
+    python gen-leetcode.py classic 1234
+```
+
+*In the future, default files by programming language option will be added to this feature.*
 
 ---
 
