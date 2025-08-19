@@ -8,6 +8,6 @@
 
 ### ✅ Intuition
 
-A problem that requires you to go through every possibble combinations of math operators and operands from a given set.j
+A problem that requires you to go through every possibble combinations of math operators and operands from a given set.
 
 We need to apply backtracking and be careful not to miss any combinations.
