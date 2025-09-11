@@ -66,7 +66,7 @@ def gen_daily():
 
     if response.status_code != 200:
         raise Exception(f"Failed to fetch data: {response.status_code}")
-
+    print("Fetched from daily GraphQL successfully")
     data = response.json()['data']['activeDailyCodingChallengeQuestion']
     question = data['question']
     question['link'] = data['link']
