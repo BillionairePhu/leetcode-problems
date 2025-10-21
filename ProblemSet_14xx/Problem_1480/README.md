@@ -1,8 +1,8 @@
 # 🔥 Leetcode Problem ({{ frontendQuestionId }})
 
-> **Problem:** [Running Sum of 1d Array](https://leetcode.com{{ link }})<br />
-> **Difficulty:** {{ difficulty }}<br/>
-> **Tags:** {% for tag in topicTags %}`{{ tag.name }}`{% if not loop.last %}, {% endif %}{% endfor %}
+> **Problem:** [Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)<br />
+> **Difficulty:** Easy<br/>
+> **Tags:** `Prefix Sum`
 
 ---
 
