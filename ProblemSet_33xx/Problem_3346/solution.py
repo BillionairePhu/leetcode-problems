@@ -3,36 +3,39 @@ from typing import Counter, List
 
 
 class Solution:
-    def maxFrequency(self, nums: List[int], k: int, numOperations: int) -> int:
-        result = 0
-        frequencies = Counter(nums)
-        freq_keys = list(frequencies.keys())
-        freq_keys.sort()
+  def maxFrequency(self, nums: List[int], k: int, numOperations: int) -> int:
+    freqs = Counter(nums)
+    keys, result = list(freqs.keys()), 0
+    keys.sort()
+    
+    index_dict, prefixes = {}, [0]
+    for key in keys:
+      index_dict[key] = len(prefixes)
+      prefixes.append(freqs[key] + prefixes[-1])
+      
+    def freq_of_value_after_operations(value: int) -> int:
+      lower, upper = value - k, value + k
+      
+      if (value in index_dict):
+        value_index = index_dict[value]
+        value_freq = prefixes[value_index] - prefixes[value_index-1]
+      else:
+        value_freq = 0
         
-        prefixes = [0]
-        key_index_dict = {}
-        for key in freq_keys:
-            key_index_dict[key] = len(prefixes)
-            prefixes.append(prefixes[-1] + frequencies[key])
-        print(prefixes)
-
-        for i in range(len(freq_keys)):
-            key = freq_keys[i]
-            upper, lower = key + k, key - k
-            curr_index = key_index_dict[key]
-            lower_index = bisect_left(freq_keys, lower)
-            upper_index = bisect_right(freq_keys, upper)
-            
-            total_freq = prefixes[upper_index] - prefixes[lower_index]
-            curr_freq = prefixes[curr_index] - prefixes[curr_index-1]
-            freq = min(curr_freq + numOperations, total_freq)
-            print("Key", key, "Total", total_freq, "Curr", curr_freq)
-            print(upper, lower)
-            result = max(result, freq)
-        return result
-
+      lower_prefix_index = bisect_left(keys, lower)
+      upper_prefix_index = bisect_right(keys, upper)
+      total_freq = prefixes[upper_prefix_index] - prefixes[lower_prefix_index]
+      ans = min(value_freq+numOperations, total_freq)
+      return ans
+      
+      
+    for i in range(len(keys)):
+      value = keys[i]
+      result = max(result, freq_of_value_after_operations(value-k))
+      result = max(result, freq_of_value_after_operations(value))
+    return result
+      
 s = Solution()
-# print("Result", s.maxFrequency([5,11,20,20], 5, 1))
-# print("Result", s.maxFrequency([9], 0, 0))
-# print("Result", s.maxFrequency([2, 49], 97, 0))
-print("Result", s.maxFrequency([88, 53], 27, 2))
+# print("Result", s.maxFrequency([1,4,5], 1, 2))
+# print("Result", s.maxFrequency([69,12,107,102,89], 9, 5))
+print("Result", s.maxFrequency([5,11,20,20], 5, 1))
