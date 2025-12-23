@@ -1,13 +1,88 @@
 import os
 import sys
-import shutil
 import requests
 from jinja2 import Template
+import leetcodequeries
+from leetcodetypes import *
 
+
+def problem_path(problem_number: int):
+    return f"ProblemSet_{problem_number//100:02d}xx/Problem_{problem_number}"
+
+SOLUTION_TEMPLATE_PATH = "template.md"
+SUPPORTED_LANG_EXT = {"cpp":".cpp", "python":".py", "python3":".py","csharp":".cs"}
+def create_solution(question: Question, name: str = "solution", lang: str | None = None):
+    if lang == None:
+        langlist = ["python3"]
+    else:
+        langlist = lang.split(",")
+    question_id = int(question.questionFrontendId)
+    folder_name = problem_path(question_id)
+    os.makedirs(folder_name, exist_ok=True)
+    print(f"Generated: 📁 {folder_name}")
+
+    solution_path = os.path.join(folder_name, "README.md")
+    with open(SOLUTION_TEMPLATE_PATH, "r", encoding="utf-8") as f:
+        template = Template(f.read())
+        output = template.render(question = question)
+    with open(solution_path, "w", encoding="utf-8") as f:
+        f.write(output)
+    
+
+    found_lang = {snip.langSlug: snip for snip in question.codeSnippets}
+    for i in langlist:
+        if (ext := SUPPORTED_LANG_EXT.get(i)) and (snippet := found_lang.get(i)):
+            code_path = os.path.join(folder_name, name + ext)
+            if not os.path.exists(code_path):
+                with open(code_path, 'w') as f:
+                    f.write("---Start Solution---\n")
+                    f.write(snippet.code)
+                    f.write("---End Solution---\n")
+                    print(f"Generated: 📁 {code_path}.")
+            else:
+                print(f"Warning: {code_path} already exists.")
+    print("Finished creating all files.")
+
+def gen_daily(**kwargs):
+    response = requests.post(leetcodequeries.url, headers=leetcodequeries.headers, json={
+        "query": leetcodequeries.dailyquery,
+        "variables": {}
+    })
+
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch data: {response.status_code}")
+    print("Fetched from daily GraphQL successfully")
+    daily = ActiveDailyCodingChallengeQuestion.model_validate(response.json()["data"]["activeDailyCodingChallengeQuestion"])
+
+    create_solution(daily.question, **kwargs)
+
+def gen_classic(problem_number: int, **kwargs):
+    response = requests.post(leetcodequeries.url, headers=leetcodequeries.headers, json={
+        "query": leetcodequeries.problemlistquery,
+        "variables": {"categorySlug":"","skip": problem_number - 1,"limit":1,"filters":{}}
+    })
+
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch data: {response.status_code}")
+    print(f"Found Problem number {problem_number}")
+    problemlist = ProblemSetQuestionList.model_validate(response.json()["data"]["problemsetQuestionList"])
+
+    slug = problemlist.questions[0].titleSlug
+
+    response = requests.post(leetcodequeries.url, headers=leetcodequeries.headers, json={
+        "query": leetcodequeries.questiondataquery,
+        "variables": {"titleSlug": slug}
+    })
+
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch data: {response.status_code}")
+    question = Question.model_validate(response.json()["data"]["question"])
+
+    create_solution(question, **kwargs)
 
 help_message = """
 Usage:
-    python gen-leetcode.py [command] [arguments]
+    python gen-leetcode.py [command] [arguments] -k [kwargs]
 
 Commands:
     help                Show this help message.
@@ -18,116 +93,16 @@ Examples:
     python gen-leetcode.py daily
     python gen-leetcode.py classic 1234
 """
-
-def problem_path(problem_number : int):
-    return f"ProblemSet_{problem_number//100:02d}xx/Problem_{problem_number}"
-
-def gen_daily():
-    url = "https://leetcode.com/graphql/"
-    headers = {
-    "accept": "*/*",
-    "content-type": "application/json",
-    }
-
-    payload = {
-    "query": """
-    query questionOfToday {
-        activeDailyCodingChallengeQuestion {
-        date
-        userStatus
-        link
-        question {
-            titleSlug
-            title
-            translatedTitle
-            acRate
-            difficulty
-            freqBar
-            frontendQuestionId: questionFrontendId
-            isFavor
-            paidOnly: isPaidOnly
-            status
-            hasVideoSolution
-            hasSolution
-            topicTags {
-            name
-            id
-            slug
-            }
-        }
-        }
-    }
-    """,
-    "variables": {},
-    "operationName": "questionOfToday"
-    }
-
-    response = requests.post(url, headers=headers, json=payload)
-
-    if response.status_code != 200:
-        raise Exception(f"Failed to fetch data: {response.status_code}")
-    print("Fetched from daily GraphQL successfully")
-    data = response.json()['data']['activeDailyCodingChallengeQuestion']
-    question = data['question']
-    question['link'] = data['link']
-    question['acRate'] = round(question['acRate'], 2)
-    question_id = int(question['frontendQuestionId'])
-    folder_name = problem_path(question_id)
-
-    os.makedirs(folder_name, exist_ok=True)
-
-    # Step 2: Load the markdown template
-    md_path = os.path.join(folder_name, "README.md")
-    with open("template.md", "r", encoding="utf-8") as f:
-        template = Template(f.read())
-        output = template.render(**question)
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write(output)
-    
-    # Step 3: Generate Python code file
-    code_path = os.path.join(folder_name, "solution.py")
-    if not os.path.exists(code_path):
-        with open(code_path, 'w') as f:
-            f.write("# Write your solution here\n")
-
-    print(f"Generated: 📁 {folder_name}")
-
-
-def gen_classic(problem_number: int):
-
-    folder_name = problem_path(problem_number)
-    os.makedirs(folder_name, exist_ok=True)
-
-    # Generate Python file
-    code_path = os.path.join(folder_name, f"solution.py")
-    if not os.path.exists(code_path):
-        with open(code_path, 'w') as f:
-            f.write("# Write your solution here\n")
-        print(f"Created: {code_path}")
-
-    # Copy sample.md to README.md
-    readme_path = os.path.join(folder_name, "README.md")
-    if not os.path.exists(md_path):
-        print("Error: sample.md not found in the current directory.")
-        return
-
-    if not os.path.exists(readme_path):
-        shutil.copy(md_path, readme_path)
-        print(f"Copied sample.md → {readme_path}")
-
-    print(f"\n📁 {folder_name} is ready!")
-
-md_path = "template.md"
-def main():
+def main(*args, **kwargs):
     try:
-        match sys.argv[1]:
+        match args[0]:
             case "help":
                 print(help_message)
             case "daily":
-                gen_daily()
+                gen_daily(**kwargs)
             case "classic":
-                problem_number = int(sys.argv[2])
-                gen_classic(problem_number)
+                problem_number = int(args[1])
+                gen_classic(problem_number, **kwargs)
             case _:
                 raise Exception("Invalid command")
     except Exception as e:
@@ -135,4 +110,5 @@ def main():
         print(help_message)
 
 if __name__ == "__main__":
-    main()
+    endargs = sys.argv.index("-k")
+    main(*sys.argv[1:endargs], **dict(arg.split('=') for arg in sys.argv[endargs + 1:]))
