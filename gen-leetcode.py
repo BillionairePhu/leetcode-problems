@@ -108,5 +108,8 @@ def main(*args, **kwargs):
         print(help_message)
 
 if __name__ == "__main__":
-    endargs = sys.argv.index("-k")
+    try:
+        endargs = sys.argv.index("-k")
+    except:
+        endargs = len(sys.argv)
     main(*sys.argv[1:endargs], **dict(arg.split('=') for arg in sys.argv[endargs + 1:]))
