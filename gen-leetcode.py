@@ -35,9 +35,7 @@ def create_solution(question: Question, name: str = "solution", lang: str | None
             code_path = os.path.join(folder_name, name + ext)
             if not os.path.exists(code_path):
                 with open(code_path, 'w') as f:
-                    f.write("---Start Solution---\n")
                     f.write(snippet.code)
-                    f.write("---End Solution---\n")
                     print(f"Generated: 📁 {code_path}.")
             else:
                 print(f"Warning: {code_path} already exists.")
@@ -110,5 +108,8 @@ def main(*args, **kwargs):
         print(help_message)
 
 if __name__ == "__main__":
-    endargs = sys.argv.index("-k")
+    try:
+        endargs = sys.argv.index("-k")
+    except:
+        endargs = len(sys.argv)
     main(*sys.argv[1:endargs], **dict(arg.split('=') for arg in sys.argv[endargs + 1:]))
