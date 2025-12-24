@@ -1,9 +1,10 @@
-# 🔥 Leetcode Problem ({{ frontendQuestionId }})
+# 🔥 Leetcode Problem ({{ question.questionFrontendId }})
 
-> **Problem:** [{{ title }}](https://leetcode.com{{ link }})<br />
-> **Difficulty:** {{ difficulty }}<br/>
-> **Tags:** {% for tag in topicTags %}`{{ tag.name }}`{% if not loop.last %}, {% endif %}{% endfor %}
+> **Problem:** [{{ question.title }}](https://leetcode.com{{ question.link }})<br />
+> **Difficulty:** {{ question.difficulty }}<br/>
+> **Tags:** {% for tag in question.topicTags %}`{{ tag.name }}`{% if not loop.last %}, {% endif %}{% endfor %}
 
+{{question.content}}
 ---
 
 ### ✅ Intuition
