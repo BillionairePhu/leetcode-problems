@@ -1,6 +1,6 @@
 # 🔥 Leetcode Problem (3074)
 
-> **Problem:** [Apple Redistribution into Boxes](https://leetcode.com)<br />
+> **Problem:** [Apple Redistribution into Boxes](https://leetcode.com/problems/apple-redistribution-into-boxes/)<br />
 > **Difficulty:** Easy<br/>
 > **Tags:** `Array`, `Greedy`, `Sorting`
 

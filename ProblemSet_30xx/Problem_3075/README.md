@@ -1,6 +1,6 @@
 # 🔥 Leetcode Problem (3075)
 
-> **Problem:** [Maximize Happiness of Selected Children](https://leetcode.com)<br />
+> **Problem:** [Maximize Happiness of Selected Children](https://leetcode.com/problems/maximize-happiness-of-selected-children)<br />
 > **Difficulty:** Medium<br/>
 > **Tags:** `Array`, `Greedy`, `Sorting`
 
@@ -58,21 +58,24 @@ The sum of the happiness values of the selected children is 5.
 
 ### ✅ Intuition
 
-We only need to sort the happinesses descendingly and pick `k` largest values, but we also need to remember reduce the remaining `k` largest values every time we pick a value.
+Using greedy method, we only care about children with the maximun happiness.
+
+Instead of decrementing all values, we store the decrement and apply that to all values.
 
 ---
 
 ### 💡Implementation
 
-1. Sort the array `happiness` descendingly
-
-2. Have a loop to get `k` largest values, everytime we iterate we add `min(happiness[i] - i, 0)` to `result` => simulate the hapiness reducing by each picking round but will not go negative.
+1. Sort the array.
+2. Loop from maximun happiness to least.
+3. Add children if value is bigger than compensation.
+4. Else return total happiness.
 
 ---
 
 ### 🧪 Complexity
 
-The complexity for this problem is the complexity of sorting `happiness`
+Let N be the number of children and M be the number of choices.
 
-- **Time:** O(N*log N)
-- **Space:** O(N)
+- **Time:** O(N * log(N) + M)
+- **Space:** O(1)
