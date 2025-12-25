@@ -1,6 +1,6 @@
 # 🔥 Leetcode Problem (3075)
 
-> **Problem:** [Maximize Happiness of Selected Children](https://leetcode.com)<br />
+> **Problem:** [Maximize Happiness of Selected Children](https://leetcode.com/problems/maximize-happiness-of-selected-children)<br />
 > **Difficulty:** Medium<br/>
 > **Tags:** `Array`, `Greedy`, `Sorting`
 
@@ -75,5 +75,7 @@ Instead of decrementing all values, we store the decrement and apply that to all
 
 ### 🧪 Complexity
 
-- **Time:** O(?)
-- **Space:** O(?)
+Let N be the number of children and M be the number of choices.
+
+- **Time:** O(N * log(N) + M)
+- **Space:** O(1)
