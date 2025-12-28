@@ -38,12 +38,6 @@
 
 ### ✅ Intuition
 
-*Add your notes or explanation here.*
-
----
-
-### 💡Implementation
-
 For each row, we find the index `i` of the first negative number in the row (if there is no negative number `i` is N, *the length of the row*). Then, that row will have `N - i` negative number. The most optimal way to do this in a sorted row is using binary search (`bisect` in Python).
 
 Since the matrix is also sorted non-increasing column-wise, we know that in the next row at index `i`, the number will also be negative. Then we will check its left neighbor, if that number is also negative then `i`-th number is not the first negative number in the row. So we decrement `i` and do this check again until the number on the left of `i` is a non-negative number or `i` equals 0.
