@@ -39,11 +39,19 @@ Examples:
 
 ## 🎯 Goals
 
-📅 **Deadline:** `31/12/2025`
+### ✅ Year 2025
+
+A solid year overall, especially considering I have only started Leetcode the first time. In the next year, I will aim to spend more time to participate in Weekly and Bi-weekly contexts.
+
+- ✅ Solve at least **1 Leetcode challenge every day**
+- ✅ Complete **at least 250 challenges**
+- ❌ Join **at least 3 Leetcode competitions**
+
+### Year 2026
 
 - Solve at least **1 Leetcode challenge every day**
-- ✅ Complete **at least 250 challenges**
-- Join **at least 3 Leetcode competitions**
+- Complete **at least 700 challenges**
+- Join **at least 5 Leetcode competitions**
 
 ---
 
