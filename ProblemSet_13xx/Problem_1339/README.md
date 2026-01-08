@@ -39,12 +39,13 @@
 
 ### ✅ Intuition
 
-Calculate the <code>sum</code> of all values with recursion.
-Then for each node, calculate the product if one of node's children was cut off by calculating the sum <code>sub</code> of the tree that has node's child. This can be done either by storing the child sum of the previous sum, or by recalculating the sums.
+We traverse the tree the first time to get the sum of all nodes' values.
+
+Then we traverse again to try to cut every edge (first, try to cut the left edge then try to cut the right edge); while doing that, we compute the product of the two subtrees' sum and update the result if it is more than the current result.
 
 ---
 
 ### 🧪 Complexity
 
 - **Time:** O(n)
-- **Additional Space:** Depth of the Tree.
+- **Space:** O(n)
