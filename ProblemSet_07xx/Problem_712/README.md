@@ -47,5 +47,5 @@ For each index <code>0 &lt; i &lt; s1.length</code>, <code>0 &lt; j &lt; s2.leng
 
 ### 🧪 Complexity
  
-- **Time:** O(?)
-- **Space:** O(?)
+- **Time:** O(n*m)
+- **Space:** O(n*m)
