@@ -57,18 +57,6 @@
 
 ---
 
-### ✅ Intuition
-
-*Add your notes or explanation here.*
-
----
-
-### 💡Implementation
-
-*Add your notes or explanation here.*
-
----
-
 ### 🧪 Complexity
 
 - **Time:** O(n ^ 2)
